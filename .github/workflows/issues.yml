@@ -1,0 +1,22 @@
+name: Action for issues
+on:
+  issues:
+    types: [opened, edited, milestoned]
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show basic context
+        run: |
+          echo "Event name:   ${{ github.event_name }}"
+          echo "Action:       ${{ github.event.action }}"
+          echo "Repository:   ${{ github.repository }}"
+          echo "Issue #:      ${{ github.event.issue.number }}"
+          echo "Title:        ${{ github.event.issue.title }}"
+          echo "State:        ${{ github.event.issue.state }}"
+          echo "URL:          ${{ github.event.issue.html_url }}"
+          echo "User:         ${{ github.event.issue.user.login }}"
+          echo "Labels:       ${{ toJSON(github.event.issue.labels) }}"
+          echo "Assignees:    ${{ toJSON(github.event.issue.assignees) }}"
+          echo "Sender:       ${{ github.event.sender.login }}"
+        
